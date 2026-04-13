@@ -21,7 +21,12 @@ const ppcanvas = document.getElementById("ppcanvas");
 const ppctx = ppcanvas.getContext("2d");
 
 
-
+function fn(v, b) {
+    return new LambdaExpressions.Abstraction(v, b);
+}
+function appl(a, b) {
+    return new LambdaExpressions.Application(a, b);
+}
 
 
 
@@ -47,4 +52,7 @@ if(DEBUG) {
 
     window.StaticRender = StaticRender;
     window.AnimRender = AnimRender;
+
+    window.fn = fn;
+    window.appl = appl;
 }
