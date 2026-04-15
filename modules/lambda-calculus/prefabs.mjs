@@ -236,7 +236,31 @@ function RECURSIVE_TEST1() {
     // if n == 0, return x
     // otherwise, return f(n - 1, x + 1)
     // so with n = 2 and x = 4, the function should reduce to 6, and it will apply the successor function to x 2 (n) times
-    const expr = appl(THETA_COMBINATOR(), fn(0, fn(1, fn(2, appl(appl(appl(LambdaPrefabs.IS_ZERO(), 1), 2), appl(appl(0, appl(LambdaPrefabs.PRED(), 1)), appl(LambdaPrefabs.SUCC(), 2)))))));
+    const expr = appl(THETA_COMBINATOR(), fn(0, fn(1, fn(2, appl(appl(appl(IS_ZERO(), 1), 2), appl(appl(0, appl(PRED(), 1)), appl(SUCC(), 2)))))));
+    expr.refactor();
+    return expr;
+}
+
+function RECURSIVE_TEST2() {
+    // takes 1 argument, if n == 0 return 0, otherwise return f(n - 1)
+    const expr = appl(THETA_COMBINATOR(), fn(0, fn(1,
+        appl(
+            appl(
+                appl(
+                    IS_ZERO(),
+                    1
+                ),
+                CHURCH_NUMERAL(0)
+            ),
+            appl(
+                0,
+                appl(
+                    PRED(),
+                    1
+                )
+            )
+        )
+    )));
     expr.refactor();
     return expr;
 }
@@ -442,6 +466,7 @@ export {
     THETA_COMBINATOR,
 
     RECURSIVE_TEST1,
+    RECURSIVE_TEST2,
 
     ACKERMAN,
     STACK_BASED_ACKERMAN,

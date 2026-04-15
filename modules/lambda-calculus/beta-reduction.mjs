@@ -73,6 +73,10 @@ function findRedexPathNormal(expression) {
 
 function betaReduceAndRefactorNormal(expression) {
     const redexPath = findRedexPathNormal(expression);
+    return betaReduceAndRefactorWithRedexPath(expression, redexPath);
+}
+
+function betaReduceAndRefactorWithRedexPath(expression, redexPath) {
     if(!(redexPath instanceof Array)) {
         return expression;
     }
@@ -95,5 +99,6 @@ export {
     betaReduceRedex,
     findRedexNormal,
     findRedexPathNormal,
+    betaReduceAndRefactorWithRedexPath,
     betaReduceAndRefactorNormal
 };
